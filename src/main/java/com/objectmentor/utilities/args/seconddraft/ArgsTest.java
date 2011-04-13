@@ -103,6 +103,13 @@ public class ArgsTest {
     }
 
     @Test
+    public void tryToGetStringArgumentWhichDoesntExist() throws ParseException {
+        Args arg = new Args("d*", new String[]{""});
+        String stringArgument = arg.getString('f');
+        assertThat("String argument", stringArgument, is(equalTo("")));
+    }
+
+    @Test
     public void invalidArgumentIsPassedForBoolean() throws ParseException {
         Args arg = new Args("l", new String[]{"-p"});
         boolean isValid = arg.isValid();
