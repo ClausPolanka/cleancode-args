@@ -18,6 +18,13 @@ public class ArgsTest {
     }
 
     @Test
+    public void checkThatOneLoggingFlagThoughItContainsBlanksIsEnabled() throws ParseException {
+        Args arg = new Args("  l     ", new String[]{"-l"});
+        boolean logging = arg.getBoolean('l');
+        assertThat("Logging", logging, is(true));
+    }
+
+    @Test
     public void checkThatTwoLoggingFlagsAreEnabled() throws ParseException {
         Args arg = new Args("l,X", new String[]{"-l", "-X"});
         boolean loggingFlag1 = arg.getBoolean('l');
@@ -94,7 +101,7 @@ public class ArgsTest {
     }
 
     @Test
-    public void printErrorMessageForWrongArgument() throws Exception {
+    public void checkErrorMessageForWrongArgument() throws Exception {
         Args arg = new Args("l", new String[]{"-p"});
         String errorMessage = arg.errorMessage();
         assertThat("Error message", errorMessage, is(equalTo("Argument(s) -p unexpected.")));
