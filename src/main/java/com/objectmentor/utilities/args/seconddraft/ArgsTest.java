@@ -110,6 +110,13 @@ public class ArgsTest {
     }
 
     @Test
+    public void tryToGetIntegerArgumentWhichDoesntExist() throws ParseException {
+        Args arg = new Args("p#", new String[]{""});
+        int intArgument = arg.getInt('x');
+        assertThat("Integer argument", intArgument, is(0));
+    }
+
+    @Test
     public void invalidArgumentIsPassedForBoolean() throws ParseException {
         Args arg = new Args("l", new String[]{"-p"});
         boolean isValid = arg.isValid();
