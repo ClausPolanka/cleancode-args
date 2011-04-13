@@ -174,7 +174,7 @@ public class Args {
     }
 
     private void setBooleanArg(char argChar, boolean value) {
-        booleanArgs.get(argChar).setBoolean(value);
+        booleanArgs.get(argChar).set("true");
     }
 
     private boolean isBooleanArg(char argChar) {
@@ -232,7 +232,7 @@ public class Args {
 
     public boolean getBoolean(char arg) {
         ArgumentMarshaller am = booleanArgs.get(arg);
-        return am != null && am.getBoolean();
+        return am != null && (Boolean) am.get();
     }
 
     public boolean has(char arg) {
@@ -246,14 +246,10 @@ public class Args {
     private class ArgsException extends Exception {
     }
 
-    private class ArgumentMarshaller {
-        private boolean booleanValue = false;
+    private abstract class ArgumentMarshaller {
+        protected boolean booleanValue = false;
         private String stringValue;
         private Integer interValue;
-
-        public void setBoolean(boolean b) {
-            booleanValue = b;
-        }
 
         public boolean getBoolean() {
             return booleanValue;
@@ -274,15 +270,46 @@ public class Args {
         public Integer getInteger() {
             return interValue == null ? 0 : interValue;
         }
+
+        public abstract void set(String value);
+
+        public abstract Object get();
     }
 
     private class BooleanArgumentMarshaller extends ArgumentMarshaller {
+        @Override
+        public void set(String value) {
+            booleanValue = true;
+        }
+
+        @Override
+        public Object get() {
+            return booleanValue;
+        }
     }
 
     private class StringArgumentMarshaller extends ArgumentMarshaller {
+        @Override
+        public void set(String value) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public Object get() {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        }
     }
 
     private class IntegerArgumentMarshaller extends ArgumentMarshaller {
+        @Override
+        public void set(String value) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public Object get() {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        }
     }
 
 }
