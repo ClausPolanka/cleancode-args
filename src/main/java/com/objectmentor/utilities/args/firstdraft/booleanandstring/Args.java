@@ -57,7 +57,7 @@ public class Args {
     private void validateSchemaElementId(char elementId) throws ParseException {
         if (!Character.isLetter(elementId)) {
             throw new ParseException(
-                "Bad character:" + elementId + "in Args format: " + schema, 0);
+                "Bad character:" + elementId + "in com.objectmentor.utilities.args.seconddraft.com.objectmentor.utilities.args.seconddraft.Args format: " + schema, 0);
         }
     }
 

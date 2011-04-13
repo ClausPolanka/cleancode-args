@@ -1,4 +1,4 @@
-package com.objectmentor.utilities.args.firstdraft.booleanstringandinteger;
+package com.objectmentor.utilities.args.seconddraft;
 
 import java.text.ParseException;
 import java.util.*;
@@ -65,7 +65,7 @@ public class Args {
 
     private void validateSchemaElementId(char elementId) throws ParseException {
         if (!Character.isLetter(elementId)) {
-            throw new ParseException("Bad character:" + elementId + "in com.objectmentor.utilities.args.seconddraft.com.objectmentor.utilities.args.seconddraft.Args format: " + schema, 0);
+            throw new ParseException("Bad character:" + elementId + "in Args format: " + schema, 0);
         }
     }
 
@@ -254,4 +254,26 @@ public class Args {
 
     private class ArgsException extends Exception {
     }
+
+    private class ArgumentMarshaler {
+        private boolean booleanValue = false;
+
+        public void setBoolean(boolean value) {
+            booleanValue = value;
+        }
+
+        public boolean getBoolean() {
+            return booleanValue;
+        }
+    }
+
+    private class BooleanArgumentMarshaler extends ArgumentMarshaler {
+    }
+
+    private class StringArgumentMarshaler extends ArgumentMarshaler {
+    }
+
+    private class IntegerArgumentMarshaler extends ArgumentMarshaler {
+    }
+
 }
