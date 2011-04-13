@@ -247,13 +247,8 @@ public class Args {
     }
 
     private abstract class ArgumentMarshaller {
-        protected boolean booleanValue = false;
         private String stringValue;
         private Integer interValue;
-
-        public boolean getBoolean() {
-            return booleanValue;
-        }
 
         public void setString(String s) {
             stringValue = s;
@@ -277,6 +272,8 @@ public class Args {
     }
 
     private class BooleanArgumentMarshaller extends ArgumentMarshaller {
+        protected boolean booleanValue = false;
+
         @Override
         public void set(String value) {
             booleanValue = true;
